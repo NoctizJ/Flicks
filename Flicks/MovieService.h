@@ -16,5 +16,5 @@
 
 
 - (instancetype) initWithEndpoint:(NSString *)endpoint;
-- (void) getAssets:(NSString *)endpoint;
+- (void) getAssets:(NSString *)endpoint withCompletionHandler:(void (^)(void))completionHandler;
 @end

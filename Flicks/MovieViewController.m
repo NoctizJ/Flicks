@@ -9,6 +9,7 @@
 #import "MovieViewController.h"
 #import "MovieTableViewCell.h"
 #import "MovieService.h"
+#import "MovieData.h"
 
 @interface MovieViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -25,19 +26,33 @@
     self.tableView.delegate = self;
     
     self.movieService = [[MovieService alloc] initWithEndpoint:self.endpoint];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.movieService getAssets:self.endpoint];
-    });
+    
     // Do any additional setup after loading the view, typically from a nib.
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    [self getAssetsAsync];
+}
+
+#pragma mark - Server Request
+
+- (void)getAssetsAsync
+{
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self.movieService getAssets:self.endpoint];
+        [self.movieService getAssets:self.endpoint withCompletionHandler:^{
+            [self onRefresh];
+        }];
     });
 }
+
+- (void) onRefresh
+{
+    [self.tableView reloadData];
+}
+
+#pragma mark - Table View Data Source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -46,7 +61,11 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    MovieTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"movieCell"];
+    MovieTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"movieCell"];
+    MovieData *movie = [[self.movieService movies] objectAtIndex:indexPath.row];
+    cell.movietitle.text = movie.title;
+    cell.movieDescription.text = movie.overview;
+    
     return cell;
 }
 

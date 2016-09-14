@@ -30,11 +30,11 @@
     return self;
 }
 
-- (NSArray *) getmovies {
+- (NSArray *) movies {
     return [_movieList copy];
 }
 
-- (void) getAssets:(NSString *)endpoint
+- (void) getAssets:(NSString *)endpoint withCompletionHandler:(void (^)(void))completionHandler
 {
     NSString *apiKey = @"bb016c41fa9429bde5c54bedc18b3b47";
     NSString *urlString = [NSString stringWithFormat:@"https://api.themoviedb.org/3/movie/%@?api_key=%@", endpoint, apiKey];
@@ -63,6 +63,7 @@
                 [_movieList addObject:movie];
             }
             
+            completionHandler();
             
             NSLog(@"Response: %@", responseDictionary);
         } else {
@@ -70,7 +71,6 @@
         }
     }];
     [task resume];
-    
 
 }
 
