@@ -7,25 +7,34 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		34082B861D890FE80045450A /* MovieData.m in Sources */ = {isa = PBXBuildFile; fileRef = 34082B851D890FE80045450A /* MovieData.m */; };
+		340AF3261D88BB0F0080D3A4 /* MovieService.m in Sources */ = {isa = PBXBuildFile; fileRef = 340AF3251D88BB0F0080D3A4 /* MovieService.m */; };
 		34ACF7FC1D887E8B00173635 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 34ACF7FB1D887E8B00173635 /* main.m */; };
 		34ACF7FF1D887E8B00173635 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 34ACF7FE1D887E8B00173635 /* AppDelegate.m */; };
-		34ACF8021D887E8B00173635 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34ACF8011D887E8B00173635 /* ViewController.m */; };
+		34ACF8021D887E8B00173635 /* MovieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34ACF8011D887E8B00173635 /* MovieViewController.m */; };
 		34ACF8051D887E8B00173635 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34ACF8031D887E8B00173635 /* Main.storyboard */; };
 		34ACF8071D887E8B00173635 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34ACF8061D887E8B00173635 /* Assets.xcassets */; };
 		34ACF80A1D887E8B00173635 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34ACF8081D887E8B00173635 /* LaunchScreen.storyboard */; };
+		34ACF8161D889CFF00173635 /* MovieTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34ACF8151D889CFF00173635 /* MovieTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		34082B841D890FE80045450A /* MovieData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieData.h; sourceTree = "<group>"; };
+		34082B851D890FE80045450A /* MovieData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieData.m; sourceTree = "<group>"; };
+		340AF3241D88BB0F0080D3A4 /* MovieService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieService.h; sourceTree = "<group>"; };
+		340AF3251D88BB0F0080D3A4 /* MovieService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieService.m; sourceTree = "<group>"; };
 		34ACF7F71D887E8B00173635 /* Flicks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flicks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34ACF7FB1D887E8B00173635 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		34ACF7FD1D887E8B00173635 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		34ACF7FE1D887E8B00173635 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		34ACF8001D887E8B00173635 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		34ACF8011D887E8B00173635 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		34ACF8001D887E8B00173635 /* MovieViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovieViewController.h; sourceTree = "<group>"; };
+		34ACF8011D887E8B00173635 /* MovieViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MovieViewController.m; sourceTree = "<group>"; };
 		34ACF8041D887E8B00173635 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		34ACF8061D887E8B00173635 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		34ACF8091D887E8B00173635 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		34ACF80B1D887E8B00173635 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		34ACF8141D889CFF00173635 /* MovieTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieTableViewCell.h; sourceTree = "<group>"; };
+		34ACF8151D889CFF00173635 /* MovieTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +48,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		34082B871D890FEF0045450A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				34082B841D890FE80045450A /* MovieData.h */,
+				34082B851D890FE80045450A /* MovieData.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		340AF3231D88BA940080D3A4 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				34ACF8001D887E8B00173635 /* MovieViewController.h */,
+				34ACF8011D887E8B00173635 /* MovieViewController.m */,
+				34ACF8141D889CFF00173635 /* MovieTableViewCell.h */,
+				34ACF8151D889CFF00173635 /* MovieTableViewCell.m */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		340AF3271D88BB170080D3A4 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				340AF3241D88BB0F0080D3A4 /* MovieService.h */,
+				340AF3251D88BB0F0080D3A4 /* MovieService.m */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
 		34ACF7EE1D887E8B00173635 = {
 			isa = PBXGroup;
 			children = (
@@ -60,9 +98,10 @@
 			children = (
 				34ACF7FD1D887E8B00173635 /* AppDelegate.h */,
 				34ACF7FE1D887E8B00173635 /* AppDelegate.m */,
-				34ACF8001D887E8B00173635 /* ViewController.h */,
-				34ACF8011D887E8B00173635 /* ViewController.m */,
 				34ACF8031D887E8B00173635 /* Main.storyboard */,
+				34082B871D890FEF0045450A /* Models */,
+				340AF3271D88BB170080D3A4 /* Services */,
+				340AF3231D88BA940080D3A4 /* View Controllers */,
 				34ACF8061D887E8B00173635 /* Assets.xcassets */,
 				34ACF8081D887E8B00173635 /* LaunchScreen.storyboard */,
 				34ACF80B1D887E8B00173635 /* Info.plist */,
@@ -151,8 +190,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				34ACF8021D887E8B00173635 /* ViewController.m in Sources */,
+				340AF3261D88BB0F0080D3A4 /* MovieService.m in Sources */,
+				34ACF8021D887E8B00173635 /* MovieViewController.m in Sources */,
+				34082B861D890FE80045450A /* MovieData.m in Sources */,
 				34ACF7FF1D887E8B00173635 /* AppDelegate.m in Sources */,
+				34ACF8161D889CFF00173635 /* MovieTableViewCell.m in Sources */,
 				34ACF7FC1D887E8B00173635 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -312,6 +354,7 @@
 				34ACF8101D887E8B00173635 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
