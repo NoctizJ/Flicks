@@ -32,6 +32,8 @@ static NSString *const posterImageURL = @"https://image.tmdb.org/t/p/w342";
     [super viewDidLoad];
     
     self.MovieUISearchBar.delegate = self;
+    UITextField *textField = [self.MovieUISearchBar valueForKey:@"_searchField"];
+    textField.clearButtonMode = UITextFieldViewModeWhileEditing;
     
     self.movies = [NSArray array];
     self.filterMovies = [NSMutableArray array];
