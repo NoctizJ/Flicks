@@ -14,6 +14,7 @@
                            title:(NSString *)title
                         overview:(NSString *)overview
                           poster:(NSString *)poster
+                            time:(NSString *)time
 {
     self = [super init];
     
@@ -23,6 +24,7 @@
         _title = title;
         _overview = overview;
         _poster = poster;
+        _time = time;
     }
     
     return self;

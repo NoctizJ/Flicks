@@ -62,7 +62,8 @@
                 MovieData *movie = [[MovieData alloc] initWithEndpoint:self.endpoint
                                                                  title:dict[@"title"]
                                                               overview:dict[@"overview"]
-                                                                poster:dict[@"poster_path"]];
+                                                                poster:dict[@"poster_path"]
+                                                                  time:dict[@"release_date"]];
                 [_movieList addObject:movie];
             }
             

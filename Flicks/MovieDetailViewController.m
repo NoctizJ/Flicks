@@ -13,7 +13,11 @@ static NSString *const posterImageURL = @"https://image.tmdb.org/t/p/original";
 
 @interface MovieDetailViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *movieImage;
-@property (weak, nonatomic) IBOutlet UIView *movieCard;
+
+@property (weak, nonatomic) IBOutlet UILabel *movieTitle;
+@property (weak, nonatomic) IBOutlet UILabel *movieTime;
+@property (weak, nonatomic) IBOutlet UILabel *movieOverview;
+
 
 @end
 
@@ -23,6 +27,10 @@ static NSString *const posterImageURL = @"https://image.tmdb.org/t/p/original";
     [super viewDidLoad];
     
     [self.movieImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", posterImageURL, self.movie.poster]]];
+    
+    self.movieTitle.text = self.movie.title;
+    self.movieTime.text = self.movie.time;
+    self.movieOverview.text = self.movie.overview;
     // Do any additional setup after loading the view.
 }
 

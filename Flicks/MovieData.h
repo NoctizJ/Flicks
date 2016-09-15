@@ -15,10 +15,12 @@
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *overview;
 @property (nonatomic, strong) NSString *poster;
+@property (nonatomic, strong) NSString *time;
+@property (nonatomic, strong) NSString *length;
 
 - (instancetype) initWithEndpoint:(NSString *) endpoint
                             title:(NSString *) title
                          overview:(NSString *) overview
-                           poster:(NSString *) poster;
-
+                           poster:(NSString *) poster
+                             time:(NSString *)time;
 @end

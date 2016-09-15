@@ -55,6 +55,7 @@ static NSString *const posterImageURL = @"https://image.tmdb.org/t/p/w342";
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.movieService getAssets:self.endpoint withCompletionHandler:^{
+            self.movies = [[self.movieService movies] mutableCopy];
             [self onRefresh];
         }];
     });
@@ -76,7 +77,7 @@ static NSString *const posterImageURL = @"https://image.tmdb.org/t/p/w342";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     MovieTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"movieCell"];
-    self.movies = [[self.movieService movies] mutableCopy];
+    //self.movies = [[self.movieService movies] mutableCopy];
     cell.movietitle.text = ((MovieData *)[self.movies objectAtIndex:indexPath.row]).title;
     cell.movieDescription.text = ((MovieData *)[self.movies objectAtIndex:indexPath.row]).overview;
     [cell.movieImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", posterImageURL, ((MovieData *)[self.movies objectAtIndex:indexPath.row]).poster]]];
