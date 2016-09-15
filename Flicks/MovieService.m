@@ -59,7 +59,10 @@
                                               error:&jsonError];
             
             for (NSDictionary *dict in responseDictionary[@"results"]) {
-                MovieData *movie = [[MovieData alloc] initWithEndpoint:self.endpoint title:dict[@"title"] overview:dict[@"overview"]];
+                MovieData *movie = [[MovieData alloc] initWithEndpoint:self.endpoint
+                                                                 title:dict[@"title"]
+                                                              overview:dict[@"overview"]
+                                                                poster:dict[@"poster_path"]];
                 [_movieList addObject:movie];
             }
             

@@ -10,7 +10,10 @@
 
 @implementation MovieData
 
-- (instancetype)initWithEndpoint:(NSString *)endpoint title:(NSString *)title overview:(NSString *)overview
+- (instancetype)initWithEndpoint:(NSString *)endpoint
+                           title:(NSString *)title
+                        overview:(NSString *)overview
+                          poster:(NSString *)poster
 {
     self = [super init];
     
@@ -19,6 +22,7 @@
         _endpoint = endpoint;
         _title = title;
         _overview = overview;
+        _poster = poster;
     }
     
     return self;

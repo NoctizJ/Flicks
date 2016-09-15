@@ -14,9 +14,11 @@
 
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *overview;
+@property (nonatomic, strong) NSString *poster;
 
 - (instancetype) initWithEndpoint:(NSString *) endpoint
                             title:(NSString *) title
-                         overview:(NSString *) overview;
+                         overview:(NSString *) overview
+                           poster:(NSString *) poster;
 
 @end
