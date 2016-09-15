@@ -12,6 +12,7 @@
 #import "MovieService.h"
 #import "MovieData.h"
 #import "UIImageView+AFNetworking.h"
+#import "SVProgressHUD.h"
 
 static NSString *const posterImageURL = @"https://image.tmdb.org/t/p/w342";
 
@@ -30,6 +31,9 @@ static NSString *const posterImageURL = @"https://image.tmdb.org/t/p/w342";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+        
+    [SVProgressHUD show];
+    [self.tableView setHidden:YES];
     
     self.MovieUISearchBar.delegate = self;
     UITextField *textField = [self.MovieUISearchBar valueForKey:@"_searchField"];
@@ -73,6 +77,9 @@ static NSString *const posterImageURL = @"https://image.tmdb.org/t/p/w342";
 {
     [self.tableView reloadData];
     [self.refreshControl endRefreshing];
+    [self fadeInImage];
+    [SVProgressHUD dismiss];
+    [self.tableView setHidden:NO];
 }
 
 #pragma mark - Table View Data Source
@@ -86,10 +93,22 @@ static NSString *const posterImageURL = @"https://image.tmdb.org/t/p/w342";
 {
     MovieTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"movieCell"];
     cell.movietitle.text = ((MovieData *)[self.filterMovies objectAtIndex:indexPath.row]).title;
+    [cell.movietitle sizeToFit];
     cell.movieDescription.text = ((MovieData *)[self.filterMovies objectAtIndex:indexPath.row]).overview;
+    cell.movieDescription.lineBreakMode = NSLineBreakByWordWrapping;
+    cell.movieDescription.numberOfLines = 0;
     [cell.movieImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", posterImageURL, ((MovieData *)[self.filterMovies objectAtIndex:indexPath.row]).poster]]];
-    
     return cell;
+}
+
+- (void)fadeInImage
+{
+    for (MovieTableViewCell* cell in self.tableView.visibleCells) {
+        cell.movieImage.alpha = 0;
+        [UIView animateWithDuration:0.6 animations:^{
+            cell.movieImage.alpha = 1;
+        }];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

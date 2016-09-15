@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "MovieViewController.h"
 
+//static CGFloat iconSize = 22;
 
 @interface AppDelegate ()
 
@@ -22,11 +23,13 @@
     UINavigationController *nowPlayingNavigationController = [storyboard instantiateViewControllerWithIdentifier:@"MoviesNavigationController"];
     MovieViewController *NowPlayingVC = (MovieViewController *)[nowPlayingNavigationController topViewController];
     NowPlayingVC.endpoint = @"now_playing";
+    nowPlayingNavigationController.tabBarItem.image = [UIImage imageNamed:@"nowPlayingIcon"];
     nowPlayingNavigationController.tabBarItem.title = @"Now Playing";
     
     UINavigationController *topRatedNavigationController = [storyboard instantiateViewControllerWithIdentifier:@"MoviesNavigationController"];
     MovieViewController *topRatedVC = (MovieViewController *)[topRatedNavigationController topViewController];
     topRatedVC.endpoint = @"top_rated";
+    topRatedNavigationController.tabBarItem.image = [UIImage imageNamed:@"topRatedIcon"];
     topRatedNavigationController.tabBarItem.title = @"Top Rated";
     
     UITabBarController *tabBarController = [[UITabBarController alloc] init];

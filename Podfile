@@ -7,5 +7,6 @@ target 'Flicks' do
 
   # Pods for Flicks
   pod 'AFNetworking', '~> 3.1.0'
+  pod 'SVProgressHUD'
 
 end

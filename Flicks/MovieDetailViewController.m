@@ -31,6 +31,9 @@ static NSString *const posterImageURL = @"https://image.tmdb.org/t/p/original";
     self.movieTitle.text = self.movie.title;
     self.movieTime.text = self.movie.time;
     self.movieOverview.text = self.movie.overview;
+    self.movieOverview.lineBreakMode = NSLineBreakByWordWrapping;
+    self.movieOverview.numberOfLines = 0;
+    [self.movieOverview sizeToFit];
     // Do any additional setup after loading the view.
 }
 

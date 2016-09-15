@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		34082B861D890FE80045450A /* MovieData.m in Sources */ = {isa = PBXBuildFile; fileRef = 34082B851D890FE80045450A /* MovieData.m */; };
 		340AF3261D88BB0F0080D3A4 /* MovieService.m in Sources */ = {isa = PBXBuildFile; fileRef = 340AF3251D88BB0F0080D3A4 /* MovieService.m */; };
+		34A8E3821D8B5E4B00B5DA1C /* iconmonstr-crown-14.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 34A8E3801D8B5E4B00B5DA1C /* iconmonstr-crown-14.pdf */; };
+		34A8E3831D8B5E4B00B5DA1C /* iconmonstr-video-2.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 34A8E3811D8B5E4B00B5DA1C /* iconmonstr-video-2.pdf */; };
 		34ACF7FC1D887E8B00173635 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 34ACF7FB1D887E8B00173635 /* main.m */; };
 		34ACF7FF1D887E8B00173635 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 34ACF7FE1D887E8B00173635 /* AppDelegate.m */; };
 		34ACF8021D887E8B00173635 /* MovieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34ACF8011D887E8B00173635 /* MovieViewController.m */; };
@@ -25,6 +27,8 @@
 		34082B851D890FE80045450A /* MovieData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieData.m; sourceTree = "<group>"; };
 		340AF3241D88BB0F0080D3A4 /* MovieService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieService.h; sourceTree = "<group>"; };
 		340AF3251D88BB0F0080D3A4 /* MovieService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieService.m; sourceTree = "<group>"; };
+		34A8E3801D8B5E4B00B5DA1C /* iconmonstr-crown-14.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "iconmonstr-crown-14.pdf"; sourceTree = "<group>"; };
+		34A8E3811D8B5E4B00B5DA1C /* iconmonstr-video-2.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "iconmonstr-video-2.pdf"; sourceTree = "<group>"; };
 		34ACF7F71D887E8B00173635 /* Flicks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flicks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34ACF7FB1D887E8B00173635 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		34ACF7FD1D887E8B00173635 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -125,6 +129,8 @@
 		34ACF7FA1D887E8B00173635 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				34A8E3801D8B5E4B00B5DA1C /* iconmonstr-crown-14.pdf */,
+				34A8E3811D8B5E4B00B5DA1C /* iconmonstr-video-2.pdf */,
 				34ACF7FB1D887E8B00173635 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -209,9 +215,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34A8E3831D8B5E4B00B5DA1C /* iconmonstr-video-2.pdf in Resources */,
 				34ACF80A1D887E8B00173635 /* LaunchScreen.storyboard in Resources */,
 				34ACF8071D887E8B00173635 /* Assets.xcassets in Resources */,
 				34ACF8051D887E8B00173635 /* Main.storyboard in Resources */,
+				34A8E3821D8B5E4B00B5DA1C /* iconmonstr-crown-14.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
