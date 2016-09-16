@@ -8,6 +8,7 @@
 
 #import "MovieDetailViewController.h"
 #import "UIImageView+AFNetworking.h"
+#import "SVProgressHUD.h"
 
 static NSString *const posterImageURL = @"https://image.tmdb.org/t/p/original";
 
@@ -17,6 +18,8 @@ static NSString *const posterImageURL = @"https://image.tmdb.org/t/p/original";
 @property (weak, nonatomic) IBOutlet UILabel *movieTitle;
 @property (weak, nonatomic) IBOutlet UILabel *movieTime;
 @property (weak, nonatomic) IBOutlet UILabel *movieOverview;
+@property (weak, nonatomic) IBOutlet UIView *cardView;
+@property (weak, nonatomic) IBOutlet UIScrollView *cardScrollView;
 
 
 @end
@@ -26,6 +29,8 @@ static NSString *const posterImageURL = @"https://image.tmdb.org/t/p/original";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [SVProgressHUD show];
+    
     [self.movieImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", posterImageURL, self.movie.poster]]];
     
     self.movieTitle.text = self.movie.title;
@@ -34,6 +39,11 @@ static NSString *const posterImageURL = @"https://image.tmdb.org/t/p/original";
     self.movieOverview.lineBreakMode = NSLineBreakByWordWrapping;
     self.movieOverview.numberOfLines = 0;
     [self.movieOverview sizeToFit];
+    [self.cardView sizeToFit];
+    self.cardScrollView.contentSize = self.cardView.frame.size;
+    [self.cardScrollView setShowsVerticalScrollIndicator:NO];
+    
+    [SVProgressHUD dismiss];
     // Do any additional setup after loading the view.
 }
 

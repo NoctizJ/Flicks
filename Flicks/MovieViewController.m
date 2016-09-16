@@ -39,6 +39,7 @@ static NSString *const posterImageURL = @"https://image.tmdb.org/t/p/w342";
         
     [SVProgressHUD show];
     [self.tableView setHidden:YES];
+    [self.collectionView setHidden:YES];
     
     self.MovieUISearchBar.delegate = self;
     UITextField *textField = [self.MovieUISearchBar valueForKey:@"_searchField"];
@@ -153,6 +154,11 @@ static NSString *const posterImageURL = @"https://image.tmdb.org/t/p/w342";
     return cell;
 }
 
+- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self.collectionView deselectItemAtIndexPath:indexPath animated:YES];
+}
+
 #pragma mark - Search Bar delegate
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
@@ -231,7 +237,12 @@ static NSString *const posterImageURL = @"https://image.tmdb.org/t/p/w342";
 #pragma mark - Segue
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+    NSIndexPath *indexPath = [[NSIndexPath alloc] init];
+    if ([sender isKindOfClass:[MovieTableViewCell class]]) {
+        indexPath = [self.tableView indexPathForCell:sender];
+    } else {
+        indexPath = [self.collectionView indexPathForCell:sender];
+    }
     MovieDetailViewController *vc = segue.destinationViewController;
     vc.movie = self.filterMovies[indexPath.row];
 }
