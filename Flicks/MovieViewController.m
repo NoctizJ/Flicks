@@ -51,13 +51,14 @@ static NSString *const posterImageURL = @"https://image.tmdb.org/t/p/w342";
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(onRefresh) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
+    
+    [self getAssetsAsync];
     // Do any additional setup after loading the view, typically from a nib.
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self getAssetsAsync];
 }
 
 #pragma mark - Server Request
@@ -82,7 +83,7 @@ static NSString *const posterImageURL = @"https://image.tmdb.org/t/p/w342";
     [self.tableView setHidden:NO];
 }
 
-#pragma mark - Table View Data Source
+#pragma mark - Table View Delegate
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -111,9 +112,9 @@ static NSString *const posterImageURL = @"https://image.tmdb.org/t/p/w342";
     }
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark - Search Bar delegate
@@ -180,7 +181,12 @@ static NSString *const posterImageURL = @"https://image.tmdb.org/t/p/w342";
 {
     NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
     MovieDetailViewController *vc = segue.destinationViewController;
-    vc.movie = self.movies[indexPath.row];
+    vc.movie = self.filterMovies[indexPath.row];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 @end
