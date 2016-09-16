@@ -42,6 +42,7 @@ static NSString *const posterImageURL = @"https://image.tmdb.org/t/p/original";
     [self.cardView sizeToFit];
     self.cardScrollView.contentSize = self.cardView.frame.size;
     [self.cardScrollView setShowsVerticalScrollIndicator:NO];
+    self.navigationItem.title = self.movie.title;
     
     [SVProgressHUD dismiss];
     // Do any additional setup after loading the view.
