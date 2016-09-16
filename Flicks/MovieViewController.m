@@ -9,6 +9,7 @@
 #import "MovieViewController.h"
 #import "MovieDetailViewController.h"
 #import "MovieTableViewCell.h"
+#import "MovieCollectionViewCell.h"
 #import "MovieService.h"
 #import "MovieData.h"
 #import "UIImageView+AFNetworking.h"
@@ -16,14 +17,17 @@
 
 static NSString *const posterImageURL = @"https://image.tmdb.org/t/p/w342";
 
-@interface MovieViewController () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
+@interface MovieViewController () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UICollectionViewDataSource, UICollectionViewDelegate>
 @property (weak, nonatomic) IBOutlet UISearchBar *MovieUISearchBar;
 @property (assign, nonatomic) BOOL isFiltered;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+
 @property (strong, nonatomic) MovieService *movieService;
 @property (strong, nonatomic) NSArray *movies;
 @property (strong, nonatomic) NSMutableArray *filterMovies;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *switchControl;
 
 @end
 
@@ -44,6 +48,8 @@ static NSString *const posterImageURL = @"https://image.tmdb.org/t/p/w342";
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    self.collectionView.delegate = self;
+    self.collectionView.dataSource = self;
     
     self.movieService = [[MovieService alloc] initWithEndpoint:self.endpoint];
     
@@ -77,29 +83,11 @@ static NSString *const posterImageURL = @"https://image.tmdb.org/t/p/w342";
 - (void) onRefresh
 {
     [self.tableView reloadData];
+    [self.collectionView reloadData];
     [self.refreshControl endRefreshing];
     [self fadeInImage];
     [SVProgressHUD dismiss];
     [self.tableView setHidden:NO];
-}
-
-#pragma mark - Table View Delegate
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return self.filterMovies.count;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    MovieTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"movieCell"];
-    cell.movietitle.text = ((MovieData *)[self.filterMovies objectAtIndex:indexPath.row]).title;
-    [cell.movietitle sizeToFit];
-    cell.movieDescription.text = ((MovieData *)[self.filterMovies objectAtIndex:indexPath.row]).overview;
-    cell.movieDescription.lineBreakMode = NSLineBreakByWordWrapping;
-    cell.movieDescription.numberOfLines = 0;
-    [cell.movieImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", posterImageURL, ((MovieData *)[self.filterMovies objectAtIndex:indexPath.row]).poster]]];
-    return cell;
 }
 
 - (void)fadeInImage
@@ -112,9 +100,43 @@ static NSString *const posterImageURL = @"https://image.tmdb.org/t/p/w342";
     }
 }
 
+
+#pragma mark - Table View Delegate
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.filterMovies.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    MovieTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"movieCell"];
+    cell.movietitle.text = ((MovieData *)[self.filterMovies objectAtIndex:indexPath.row]).title;
+    [cell.movietitle sizeToFit];
+    cell.movieDescription.text = ((MovieData *)[self.filterMovies objectAtIndex:indexPath.row]).overview;
+    cell.movieDescription.lineBreakMode = NSLineBreakByWordWrapping;
+    cell.movieDescription.numberOfLines = 0;
+    [cell.movieImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", posterImageURL, ((MovieData *)[self.filterMovies objectAtIndex:indexPath.row]).poster]]];
+    return cell;
+}
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+#pragma mark - Collection View Delegate
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return self.filterMovies.count;
+}
+
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    MovieCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"movieCollectionCell" forIndexPath:indexPath];
+    [cell.movieImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", posterImageURL, ((MovieData *)[self.filterMovies objectAtIndex:indexPath.row]).poster]]];
+    return cell;
 }
 
 #pragma mark - Search Bar delegate
@@ -160,6 +182,7 @@ static NSString *const posterImageURL = @"https://image.tmdb.org/t/p/w342";
 {
     self.filterMovies = [NSMutableArray arrayWithArray:self.movies];
     [self.tableView reloadData];
+    [self.collectionView reloadData];
 }
 
 - (void)filterResults:(NSString *)searchText
@@ -174,6 +197,21 @@ static NSString *const posterImageURL = @"https://image.tmdb.org/t/p/w342";
     }
     
     [self.tableView reloadData];
+    [self.collectionView reloadData];
+}
+
+#pragma mark - Switch tableView and collectionView
+
+- (IBAction)onValueChanged:(UISegmentedControl *)sender {
+    if (self.switchControl.selectedSegmentIndex == 0) {
+        self.tableView.hidden = NO;
+        self.MovieUISearchBar.hidden = NO;
+        self.collectionView.hidden = YES;
+    } else {
+        self.tableView.hidden = YES;
+        self.MovieUISearchBar.hidden = YES;
+        self.collectionView.hidden = NO;
+    }
 }
 
 #pragma mark - Segue
