@@ -27,6 +27,7 @@ static NSString *const posterImageURL = @"https://image.tmdb.org/t/p/w342";
 @property (strong, nonatomic) NSArray *movies;
 @property (strong, nonatomic) NSMutableArray *filterMovies;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (nonatomic, strong) UIRefreshControl *refreshControl2;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *switchControl;
 
 @end
@@ -56,7 +57,12 @@ static NSString *const posterImageURL = @"https://image.tmdb.org/t/p/w342";
     // refresh control
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(onRefresh) forControlEvents:UIControlEventValueChanged];
+    
+    self.refreshControl2 = [[UIRefreshControl alloc] init];
+    [self.refreshControl2 addTarget:self action:@selector(onRefresh2) forControlEvents:UIControlEventValueChanged];
+    
     [self.tableView insertSubview:self.refreshControl atIndex:0];
+    [self.collectionView insertSubview:self.refreshControl2 atIndex:0];
     
     [self getAssetsAsync];
     // Do any additional setup after loading the view, typically from a nib.
@@ -88,6 +94,14 @@ static NSString *const posterImageURL = @"https://image.tmdb.org/t/p/w342";
     [self fadeInImage];
     [SVProgressHUD dismiss];
     [self.tableView setHidden:NO];
+}
+
+- (void) onRefresh2
+{
+    [self.tableView reloadData];
+    [self.collectionView reloadData];
+    [self.refreshControl2 endRefreshing];
+    [SVProgressHUD dismiss];
 }
 
 - (void)fadeInImage
@@ -205,11 +219,11 @@ static NSString *const posterImageURL = @"https://image.tmdb.org/t/p/w342";
 - (IBAction)onValueChanged:(UISegmentedControl *)sender {
     if (self.switchControl.selectedSegmentIndex == 0) {
         self.tableView.hidden = NO;
-        self.MovieUISearchBar.hidden = NO;
+        //self.MovieUISearchBar.hidden = NO;
         self.collectionView.hidden = YES;
     } else {
         self.tableView.hidden = YES;
-        self.MovieUISearchBar.hidden = YES;
+        //self.MovieUISearchBar.hidden = YES;
         self.collectionView.hidden = NO;
     }
 }
