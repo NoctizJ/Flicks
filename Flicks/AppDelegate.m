@@ -35,6 +35,19 @@
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
     tabBarController.viewControllers = @[nowPlayingNavigationController, topRatedNavigationController];
     
+    // Appearance Proxy
+    [[UITabBar appearance] setBarTintColor:[UIColor blackColor]];
+    CGRect myRect = CGRectMake(0, 0, tabBarController.tabBar.frame.size.width/2, tabBarController.tabBar.frame.size.height);
+    [[UITabBar appearance] setSelectionIndicatorImage:[AppDelegate imageWithColor:[UIColor lightGrayColor] andBounds:myRect]];
+    [[UITabBar appearance] setTintColor:[UIColor blackColor]];
+    [[UITabBar appearance] setUnselectedItemTintColor:[UIColor darkGrayColor]];
+    
+    [[UINavigationBar appearance] setBarTintColor:[UIColor blackColor]];
+    [[UINavigationBar appearance] setTintColor:[UIColor lightGrayColor]];
+    
+    [[UISearchBar appearance] setBarTintColor:[UIColor darkGrayColor]];
+    [[UISearchBar appearance] setTintColor:[UIColor whiteColor]];
+    
     self.window.rootViewController = tabBarController;
     return YES;
 }
@@ -64,6 +77,16 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
++ (UIImage *)imageWithColor:(UIColor *)color andBounds:(CGRect)imgBounds {
+    UIGraphicsBeginImageContextWithOptions(imgBounds.size, NO, 0);
+    [color setFill];
+    UIRectFill(imgBounds);
+    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return img;
 }
 
 

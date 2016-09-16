@@ -44,6 +44,9 @@ static NSString *const posterImageURL = @"https://image.tmdb.org/t/p/original";
     [self.cardScrollView setShowsVerticalScrollIndicator:NO];
     self.navigationItem.title = self.movie.title;
     
+    [self.navigationController.navigationBar
+     setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    
     [SVProgressHUD dismiss];
     // Do any additional setup after loading the view.
 }
